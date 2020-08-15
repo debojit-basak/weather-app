@@ -46,18 +46,17 @@
         fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputValue.value+'&appid=1a6cb156c0a286af143766d54a9c6d2a')
         .then(res=>res.json())
         .then(data=>{
-           // console.log(data);
-            var nameValue = data['main']['name'];
-            console.log(nameValue);
+           console.log(data);
+            var nameValue = data['name'];
             var tempValue = data['main']['temp'];
-            var descValue = data['weather'][0]['description'];
+            var descValue = data['weather'][0]['main'];
 
             name.innerHtml = nameValue;
             temp.innerHtml = tempValue;
             desc.innerHtml= descValue;
         })
 
-        .catch(err=>alert("wrong city"))
+        //.catch(err=>alert("wrong city"))
     })
 
 
