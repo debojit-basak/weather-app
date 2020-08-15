@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Temperature Hot</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url(images/bg-image.jpg) no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="col-md-6 m-auto py-5">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control inputValue input" placeholder="Enter a location for Weather ...">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-danger button">Search</button>
+                </div>
+            </div>
+        </form>
+        <div class="weather-status text-white text-center">
+            <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
+            <h1 class="name">Dhaka</h1>
+            <h3 class="temp"> 1234</h3>
+            <h1 class="lead desc">cloudy</h1>
+        </div>
+    </div>
+<script>
+    var button = document.querySelector('.button')
+    var inputValue = document.querySelector('.inputValue')
+    var name = document.querySelector('.name');
+    var desc = document.querySelector('.desc');
+    var temp = document.querySelector('.temp');
+//1a6cb156c0a286af143766d54a9c6d2a
+    button.addEventListener('click', function(name){
+        fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputValue.value+'&appid=1a6cb156c0a286af143766d54a9c6d2a')
+        .then(res=>res.json())
+        .then(data=>{
+           // console.log(data);
+            var nameValue = data['main']['name'];
+            console.log(nameValue);
+            var tempValue = data['main']['temp'];
+            var descValue = data['weather'][0]['description'];
+
+            name.innerHtml = nameValue;
+            temp.innerHtml = tempValue;
+            desc.innerHtml= descValue;
+        })
+
+        .catch(err=>alert("wrong city"))
+    })
+
+
+</script>
+</body>
+
+</html>
