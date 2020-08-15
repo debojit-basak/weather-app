@@ -30,9 +30,9 @@
         </form>
         <div class="weather-status text-white text-center">
             <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
-            <h1 class="name">Dhaka</h1>
-            <h3 class="temp"> 1234</h3>
-            <h1 class="lead desc">cloudy</h1>
+            <h1 class="name" id="name">Dhaka</h1>
+            <h3 class="temp" id="temp"> 1234</h3>
+            <h1 class="lead desc" id="desc">cloudy</h1>
         </div>
     </div>
 <script>
@@ -46,14 +46,14 @@
         fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputValue.value+'&appid=1a6cb156c0a286af143766d54a9c6d2a')
         .then(res=>res.json())
         .then(data=>{
-           console.log(data);
-            var nameValue = data['name'];
+          // console.log(data);
+            var nameValue = data['name'][0];
             var tempValue = data['main']['temp'];
-            var descValue = data['weather'][0]['main'];
+            var descValue = data['weather'][0]['description'];
 
-            name.innerHtml = nameValue;
-            temp.innerHtml = tempValue;
-            desc.innerHtml= descValue;
+            name.innerText = nameValue;
+            temp.innerText = tempValue;
+            desc.innerText = descValue;
         })
 
         //.catch(err=>alert("wrong city"))
